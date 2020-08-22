@@ -1,31 +1,34 @@
-'use strict';
+"use strict";
 
-const controllers = require('./lib/controllers');
+const user = require.main.require("./src/user");
 
-const plugin = {};
+const discordEmbed = {};
+let app;
 
-plugin.init = function (params, callback) {
-	const router = params.router;
-	const hostMiddleware = params.middleware;
-	// const hostControllers = params.controllers;
-
-	// We create two routes for every view. One API call, and the actual route itself.
-	// Just add the buildHeader middleware to your route and NodeBB will take care of everything for you.
-
-	router.get('/admin/plugins/quickstart', hostMiddleware.admin.buildHeader, controllers.renderAdminPage);
-	router.get('/api/admin/plugins/quickstart', controllers.renderAdminPage);
-
-	callback();
+discordEmbed.init = async function (params) {
+    app = params.app;
 };
 
-plugin.addAdminNavigation = function (header, callback) {
-	header.plugins.push({
-		route: '/plugins/quickstart',
-		icon: 'fa-tint',
-		name: 'Quickstart',
-	});
-
-	callback(null, header);
+discordEmbed.getWidgets = async function (widgets) {
+    const discordWidget = {
+        name: "Discord Chat",
+        widget: "discord-chat",
+        description: "Discord chat embed powered by TitanEmbeds",
+        content: await app.renderAsync("admin/discordWidget", {}),
+    };
+    widgets.push(discordWidget);
+    return widgets;
+};
+discordEmbed.renderDiscordWidget = async function (widget) {
+    let data = widget.data;
+    if (data.id.slice(0, 4) == "http") {
+        data.id = data.id
+            .slice(data.id.slice(0, -1).lastIndexOf("/"))
+            .replaceAll("/", "");
+    }
+    data.username = await user.getUsernamesByUids([widget.uid])[0];
+    widget.html = await app.renderAsync("widgets/discordChat", data);
+    return widget;
 };
 
-module.exports = plugin;
+module.exports = discordEmbed;
