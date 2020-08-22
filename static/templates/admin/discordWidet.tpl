@@ -1,10 +1,10 @@
-<label for="id">
+<label for="serverId">
     Embed/Server ID
 </label>
 <input
     type="text"
     class="form-control"
-    name="id"
+    name="serverId"
     placeholder="1234567890"
     required
 />
