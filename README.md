@@ -17,4 +17,4 @@ A simple widget for embedding Discord chat using [TitanEmbeds](https://titanembe
 
 ### screenshot
 
-[screenshot](screenshot.png)
+![screenshot](screenshot.png)
