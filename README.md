@@ -1,17 +1,20 @@
 # Discord Embed Plugin for NodeBB
 
-A starter kit for quickly creating NodeBB plugins. Comes with a pre-setup LESS file, server side JS script with an `action:app.load` hook, and a client-side script. Most plugins need at least one of the above, so this ought to save you some time. For a full list of hooks have a look at our [wiki page](https://github.com/NodeBB/NodeBB/wiki/Hooks), and for more information about creating plugins please visit our [documentation portal](https://docs.nodebb.org/).
-
-Fork this or copy it, and using your favourite text editor find and replace all instances of `nodebb-plugin-discord-embed` with `nodebb-plugin-your-plugins-name`. Change the author's name in the LICENSE and package.json files.
-
-## Hello World
-
-Really simple, just edit `static/lib/main.js` and paste in `console.log('hello world');`, and that's it!
+A simple widget for embedding Discord chat using [TitanEmbeds](https://titanembeds.com/).
 
 ## Installation
 
     npm install nodebb-plugin-discord-embed
 
-## Screenshots
+## Usage
 
-Don't forget to add screenshots!
+1. configure TitanEmbeds on a server from https://titanembeds.com/user/dashboard
+2. Grab Embed/Server ID from the bottom of the administrator page (on TitanEmbeds)
+3. On your forum, go to `admin/extend/widgets`
+4. Select "Discord Chat" widget from the dropdown on the right and drag it to the zone you want the embed to be in
+5. Paste the Embed/Server ID to the first text input in widget settings
+6. You now have a basic widget! Now you can modify more advanced settings in the widget settings and on the TitanEmbeds website
+
+### screenshot
+
+[screenshot](screenshot.png)
