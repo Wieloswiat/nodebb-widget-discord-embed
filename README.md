@@ -1,10 +1,10 @@
-# Discord Embed Plugin for NodeBB
+# Discord Embed Widget for NodeBB
 
 A simple widget for embedding Discord chat using [TitanEmbeds](https://titanembeds.com/).
 
 ## Installation
 
-    npm install nodebb-plugin-discord-embed
+    npm install nodebb-widget-discord-embed
 
 ## Usage
 
