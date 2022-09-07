@@ -1,7 +1,7 @@
 {
 	"name": "nodebb-widget-discord-embed",
-	"version": "1.0.0",
-	"description": "Embed a Discord chat window using Titan Embeds",
+	"version": "2.0.0",
+	"description": "Embed a Discord chat window using Widgetbot",
 	"main": "library.js",
 	"repository": {
 		"type": "git",
@@ -11,7 +11,7 @@
 		"nodebb",
 		"plugin",
 		"discord-embed",
-		"TitanEmbeds"
+		"Widgetbot"
 	],
 	"husky": {
 		"hooks": {
@@ -35,15 +35,15 @@
 	},
 	"readmeFilename": "README.md",
 	"nbbpm": {
-		"compatibility": "^1.13.0"
+		"compatibility": "^1.13.0 || ^2.0.0"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^8.0.0",
-		"@commitlint/config-angular": "^7.1.2",
-		"eslint-config-airbnb-base": "^12.1.0",
-		"eslint-plugin-import": "^2.8.0",
+		"@commitlint/cli": "^17.1.2",
+		"@commitlint/config-angular": "^17.1.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-plugin-import": "^2.26.0",
 		"husky": "^2.4.0",
-		"eslint": "^6.8.0",
-		"lint-staged": "^10.0.9"
+		"eslint": "^8.23.0",
+		"lint-staged": "^13.0.3"
 	}
 }

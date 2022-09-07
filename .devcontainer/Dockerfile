@@ -22,7 +22,7 @@ RUN sudo apt-get update && export DEBIAN_FRONTEND=noninteractive && sudo apt-get
 # RUN su node -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION}"
 
 # install grunt globally
-RUN yarn global add grunt-cli
+RUN npm install -g grunt-cli
 
 WORKDIR /opt/nodebb
 RUN git clone https://github.com/NodeBB/NodeBB /opt/nodebb

@@ -1,5 +1,10 @@
-<iframe
-  class="discordChat"
-  src="https://titanembeds.com/embed/{serverId}?username={username}&css={css}&defaultchannel={defaultchannel}&fixedsidenav={fixedsidenav}&lang={lang}&noscroll={noscroll}&scrollbartheme={scrollbartheme}&lockscrollbar={lockscrollbar}&theme={theme}&userscalable={userscalable}"
-  frameborder="0"
-></iframe>
+<widgetbot
+    class="discordChat"
+    server="{serverId}"
+    channel="{defaultchannel}"
+    {{{ if username }}} username="{username}" {{{ end }}}
+    {{{ if useravatar }}} avatar="{useravatar}" {{{ end }}}
+    width="100%"
+    height="{height}"
+></widgetbot>
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>

@@ -1,7 +1,7 @@
 "use strict";
 
 const user = require.main.require("./src/user");
-
+const nconf = require.main.require("nconf");
 const discordEmbed = {};
 let app;
 
@@ -13,7 +13,7 @@ discordEmbed.getWidgets = async function (widgets) {
 	const discordWidget = {
 		name: "Discord Chat",
 		widget: "discord-chat",
-		description: "Discord chat embed powered by TitanEmbeds",
+		description: "Discord chat embed powered by Widgetbot",
 		content: await app.renderAsync("admin/discordWidget", {}),
 	};
 	widgets.push(discordWidget);
@@ -21,20 +21,20 @@ discordEmbed.getWidgets = async function (widgets) {
 };
 discordEmbed.renderDiscordWidget = async function (widget) {
 	const data = widget.data;
-	data.css = data.css !== "" ? parseInt(data.css, 10) : 0;
-	data.fixedsidenav =
-		data.fixedsidenav && data.fixedsidenav !== "" ? "true" : "false";
-	data.noscroll = data.noscroll && data.noscroll !== "" ? "true" : "false";
-	data.lockscrollbar =
-		data.lockscrollbar && data.lockscrollbar !== "" ? "true" : "false";
-	data.userscalable =
-		data.userscalable && data.userscalable !== "" ? "true" : "false";
+	data.height = data.height || "600";
 	if (data.serverId.slice(0, 4) === "http") {
 		data.serverId = data.serverId
 			.slice(data.serverId.slice(0, -1).lastIndexOf("/"))
 			.replaceAll("/", "");
 	}
-	[data.username] = await user.getUsernamesByUids([widget.uid]);
+	const userFields = await user.getUserFields(widget.uid, ["username", "picture"]);
+	if (data.useUsername === "on") {
+		data.username = userFields.username;
+	}
+	if (data.useAvatar === "on" && userFields.picture?.length) {
+		data.useravatar = userFields.picture.startsWith("http") ? userFields.picture : `${nconf.get("url")}${userFields.picture}`;
+	}
+
 	widget.html = await app.renderAsync("widgets/discordChat", data);
 	return widget;
 };
